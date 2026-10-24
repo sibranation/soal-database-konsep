@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const SOAL = path.join(__dirname, '..', 'data', 'soal.json');
-const HASIL = path.join(__dirname, '..', 'data', 'hasil.json');
+// ponytail: on Vercel without Redis, /tmp is the only writable dir and is wiped per instance; connect Upstash Redis for real persistence
+const HASIL = process.env.VERCEL ? '/tmp/hasil.json' : path.join(__dirname, '..', 'data', 'hasil.json');
 
 // Upstash Redis (Vercel Marketplace) env names; without them, results go to the local JSON file.
 const REDIS_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
