@@ -1,5 +1,4 @@
-const fs = require('fs');
-const { HASIL, readJson, nilai, send } = require('./_lib');
+const { nilai, send, simpanHasil } = require('./_lib');
 
 const readBody = req => req.body !== undefined
   ? Promise.resolve(typeof req.body === 'string' ? JSON.parse(req.body) : req.body)
@@ -19,8 +18,9 @@ module.exports = async (req, res) => {
     return send(res, 400, { error: 'Nama, NIM, dan jawaban wajib diisi' });
   }
   const hasil = { nama, nim, ...nilai(data.jawaban), waktu: new Date().toISOString() };
-  const semua = readJson(HASIL, []);
-  semua.push(hasil);
-  try { fs.writeFileSync(HASIL, JSON.stringify(semua, null, 2)); } catch (e) { console.error('gagal simpan hasil', e); }
+  try { await simpanHasil(hasil); } catch (e) {
+    console.error('gagal simpan hasil', e);
+    return send(res, 500, { error: 'Gagal menyimpan hasil, coba kirim lagi.' });
+  }
   send(res, 200, hasil);
 };

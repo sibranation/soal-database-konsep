@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Rekap Hasil Kuis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9; --surface: #ffffff; --text: #18181b; --muted: #71717a;
+    --line: #e7e5e4; --accent: #4f46e5; --accent-soft: #eef2ff; --ring: rgba(79,70,229,.25);
+    --good: #16a34a; --mid: #d97706; --low: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
+    font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; padding: 48px 16px;
+  }
+  main { max-width: 880px; margin: 0 auto; animation: enter .5s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes enter { from { opacity: 0; transform: translateY(16px); } }
+
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -.03em; margin: 0 0 8px; font-weight: 700; }
+  .lead { color: var(--muted); margin: 0 0 32px; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .live { width: 8px; height: 8px; border-radius: 50%; background: var(--good); animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .stat span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .stat b { font-size: 28px; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+
+  .tools { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tools input {
+    flex: 1; min-width: 200px; padding: 12px 14px; font: inherit; font-size: 15px; color: var(--text);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .tools input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--ring); }
+  .btn {
+    font: inherit; font-weight: 600; font-size: 14px; padding: 12px 18px; border-radius: 12px; cursor: pointer;
+    background: transparent; color: var(--text); border: 1px solid var(--line); transition: transform .15s, border-color .2s;
+  }
+  .btn:hover { border-color: var(--muted); }
+  .btn:active { transform: scale(.97); }
+  .btn:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--ring); }
+
+  .table { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 14px 16px; white-space: nowrap; }
+  th { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px solid var(--line); }
+  th button { all: unset; cursor: pointer; }
+  th button:focus-visible { box-shadow: 0 0 0 3px var(--ring); border-radius: 4px; }
+  th[aria-sort] button::after { content: ' ↓'; }
+  th[aria-sort=ascending] button::after { content: ' ↑'; }
+  tbody tr { border-bottom: 1px solid var(--line); animation: enter .4s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(min(var(--i), 20) * 25ms); }
+  tbody tr:last-child { border-bottom: 0; }
+  tbody tr:hover { background: var(--accent-soft); }
+  tbody tr.new { animation: flash 1.6s ease-out; }
+  @keyframes flash { from { background: var(--accent-soft); } }
+  td.num { font-variant-numeric: tabular-nums; color: var(--muted); }
+  .score { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .score i { width: 8px; height: 8px; border-radius: 50%; }
+  .empty { text-align: center; color: var(--muted); padding: 48px 16px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; animation-delay: 0ms !important; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Konsep Basis Data</p>
+  <h1>Rekap Hasil Kuis</h1>
+  <p class="lead"><span class="live" aria-hidden="true"></span><span id="status">Memuat…</span></p>
+
+  <div class="stats">
+    <div class="stat"><span>Peserta</span><b id="s-peserta">0</b></div>
+    <div class="stat"><span>Rata-rata</span><b id="s-rata">0</b></div>
+    <div class="stat"><span>Tertinggi</span><b id="s-max">0</b></div>
+    <div class="stat"><span>Terendah</span><b id="s-min">0</b></div>
+  </div>
+
+  <div class="tools">
+    <input type="search" id="cari" placeholder="Cari nama atau NIM" aria-label="Cari nama atau NIM">
+    <button type="button" class="btn" id="csv">Unduh CSV</button>
+  </div>
+
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th data-key="nama"><button type="button">Nama</button></th>
+          <th data-key="nim"><button type="button">NIM</button></th>
+          <th data-key="skor"><button type="button">Skor</button></th>
+          <th data-key="benar"><button type="button">Benar</button></th>
+          <th data-key="waktu" aria-sort="descending"><button type="button">Waktu</button></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let data = [], sortKey = 'waktu', asc = false, seen = null;
+const fmt = new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Jakarta' });
+const warna = s => s >= 80 ? 'var(--good)' : s >= 60 ? 'var(--mid)' : 'var(--low)';
+const id = h => h.nim + '|' + h.waktu;
+
+async function load() {
+  try {
+    const res = await fetch('/api/hasil', { cache: 'no-store' });
+    if (!res.ok) throw new Error();
+    data = await res.json();
+    $('status').textContent = `Diperbarui ${new Date().toLocaleTimeString('id-ID')} · otomatis tiap 10 detik`;
+    render();
+  } catch {
+    $('status').textContent = 'Gagal memuat data, mencoba lagi…';
+  }
+}
+
+function render() {
+  const skor = data.map(h => h.skor);
+  $('s-peserta').textContent = data.length;
+  $('s-rata').textContent = data.length ? (skor.reduce((a, b) => a + b, 0) / data.length).toFixed(1) : 0;
+  $('s-max').textContent = data.length ? Math.max(...skor) : 0;
+  $('s-min').textContent = data.length ? Math.min(...skor) : 0;
+
+  const q = $('cari').value.trim().toLowerCase();
+  const rows = data
+    .filter(h => !q || h.nama.toLowerCase().includes(q) || h.nim.toLowerCase().includes(q))
+    .sort((a, b) => {
+      const x = a[sortKey], y = b[sortKey];
+      const c = typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'id');
+      return asc ? c : -c;
+    });
+
+  const tbody = $('rows');
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="6" class="empty">${data.length ? 'Tidak ada yang cocok.' : 'Belum ada peserta yang mengirim jawaban.'}</td></tr>`;
+    return;
+  }
+  const first = seen === null;
+  tbody.replaceChildren(...rows.map((h, i) => {
+    const tr = document.createElement('tr');
+    if (first) tr.style.setProperty('--i', i);
+    else { tr.style.animation = 'none'; if (!seen.has(id(h))) tr.className = 'new'; }
+    const cells = [i + 1, h.nama, h.nim, null, `${h.benar}/${h.total}`, fmt.format(new Date(h.waktu))];
+    cells.forEach((v, j) => {
+      const td = document.createElement('td');
+      if (j === 3) {
+        const s = document.createElement('span');
+        s.className = 'score';
+        const dot = document.createElement('i');
+        dot.style.background = warna(h.skor);
+        s.append(dot, h.skor);
+        td.appendChild(s);
+      } else td.textContent = v;
+      if (j === 0 || j === 4) td.className = 'num';
+      tr.appendChild(td);
+    });
+    return tr;
+  }));
+  seen = new Set(data.map(id));
+}
+
+document.querySelector('thead').addEventListener('click', e => {
+  const th = e.target.closest('th[data-key]');
+  if (!th) return;
+  asc = sortKey === th.dataset.key ? !asc : th.dataset.key === 'nama' || th.dataset.key === 'nim';
+  sortKey = th.dataset.key;
+  document.querySelectorAll('th').forEach(t => t.removeAttribute('aria-sort'));
+  th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+  render();
+});
+$('cari').addEventListener('input', render);
+
+$('csv').addEventListener('click', () => {
+  // Prefix formula-leading cells so spreadsheets don't execute them.
+  const cell = v => { let s = String(v); if (/^[=+\-@]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+  const lines = [['Nama', 'NIM', 'Skor', 'Benar', 'Total', 'Waktu (WIB)'], ...data.map(h => [h.nama, h.nim, h.skor, h.benar, h.total, fmt.format(new Date(h.waktu))])];
+  const blob = new Blob(['﻿' + lines.map(r => r.map(cell).join(',')).join('\n')], { type: 'text/csv;charset=utf-8' });
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'hasil-kuis-basis-data.csv' });
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+load();
+setInterval(load, 10000);
+</script>
+</body>
+</html>
