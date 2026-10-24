@@ -56,28 +56,6 @@
   },
   {
     "id": 6,
-    "pertanyaan": "Model Data Logis berfungsi untuk...",
-    "pilihan": [
-      "Menentukan merek server yang digunakan",
-      "Memetakan konsep data ke struktur teknis yang lebih rinci, termasuk jenis data atribut, hubungan antar entitas, dan atribut kunci",
-      "Menggambar antarmuka aplikasi",
-      "Mengatur hak akses pengguna"
-    ],
-    "jawaban": 1
-  },
-  {
-    "id": 7,
-    "pertanyaan": "Manakah yang BUKAN merupakan fungsi utama model data?",
-    "pilihan": [
-      "Mendefinisikan struktur data",
-      "Menstandardisasi data",
-      "Meningkatkan kualitas data",
-      "Meningkatkan kecepatan prosesor komputer"
-    ],
-    "jawaban": 3
-  },
-  {
-    "id": 8,
     "pertanyaan": "Model data yang mengorganisir data dalam pola induk-anak menyerupai pohon dengan satu akar tunggal disebut...",
     "pilihan": [
       "Model Data Relasional",
@@ -88,7 +66,7 @@
     "jawaban": 2
   },
   {
-    "id": 9,
+    "id": 7,
     "pertanyaan": "Pada struktur direktori berkas sebagai contoh model hierarkis, yang berperan sebagai akar adalah...",
     "pilihan": [
       "Laporan.docx",
@@ -99,18 +77,7 @@
     "jawaban": 1
   },
   {
-    "id": 10,
-    "pertanyaan": "Dalam model hierarkis, setiap node memiliki satu induk, kecuali...",
-    "pilihan": [
-      "Simpul daun",
-      "Simpul cucu",
-      "Simpul akar",
-      "Simpul anak"
-    ],
-    "jawaban": 2
-  },
-  {
-    "id": 11,
+    "id": 8,
     "pertanyaan": "Model data relasional mengorganisasi data ke dalam...",
     "pilihan": [
       "Tabel-tabel yang terdiri dari baris dan kolom",
@@ -121,7 +88,7 @@
     "jawaban": 0
   },
   {
-    "id": 12,
+    "id": 9,
     "pertanyaan": "Dalam model relasional, setiap baris dalam tabel yang mewakili satu catatan data individual disebut...",
     "pilihan": [
       "Atribut",
@@ -132,7 +99,7 @@
     "jawaban": 2
   },
   {
-    "id": 13,
+    "id": 10,
     "pertanyaan": "Kolom unik yang secara khusus mengidentifikasi setiap baris dalam sebuah tabel disebut...",
     "pilihan": [
       "Kunci Asing (Foreign Key)",
@@ -143,7 +110,7 @@
     "jawaban": 1
   },
   {
-    "id": 14,
+    "id": 11,
     "pertanyaan": "Kolom dalam satu tabel yang merujuk pada kunci primer di tabel lain untuk membuat hubungan antar tabel disebut...",
     "pilihan": [
       "Kunci Primer",
@@ -154,29 +121,7 @@
     "jawaban": 2
   },
   {
-    "id": 15,
-    "pertanyaan": "Aturan dalam model relasional yang memastikan data akurat, konsisten, dan tidak terhapus secara tidak sengaja saat dihubungkan adalah...",
-    "pilihan": [
-      "Integritas entitas dan integritas referensial",
-      "Enkapsulasi dan polimorfisme",
-      "GRANT dan REVOKE",
-      "Normalisasi dan denormalisasi"
-    ],
-    "jawaban": 0
-  },
-  {
-    "id": 16,
-    "pertanyaan": "Konsep pada model berorientasi objek yang menggabungkan data dan metode ke dalam satu unit serta menyembunyikan detail implementasi internalnya disebut...",
-    "pilihan": [
-      "Pewarisan",
-      "Polimorfisme",
-      "Enkapsulasi",
-      "Abstraksi tabel"
-    ],
-    "jawaban": 2
-  },
-  {
-    "id": 17,
+    "id": 12,
     "pertanyaan": "Pada sistem perpustakaan berorientasi objek, kelas Novel yang mewarisi atribut dari kelas Buku merupakan contoh dari...",
     "pilihan": [
       "Enkapsulasi",
@@ -187,7 +132,7 @@
     "jawaban": 1
   },
   {
-    "id": 18,
+    "id": 13,
     "pertanyaan": "Perintah SQL CREATE, ALTER, dan DROP termasuk dalam kategori...",
     "pilihan": [
       "Data Manipulation Language (DML)",
@@ -198,7 +143,7 @@
     "jawaban": 2
   },
   {
-    "id": 19,
+    "id": 14,
     "pertanyaan": "Perintah SQL yang digunakan untuk mengubah data yang sudah ada dalam tabel adalah...",
     "pilihan": [
       "ALTER",
@@ -209,7 +154,7 @@
     "jawaban": 1
   },
   {
-    "id": 20,
+    "id": 15,
     "pertanyaan": "Perintah SQL untuk mencabut hak akses pengguna yang telah diberikan sebelumnya adalah...",
     "pilihan": [
       "DELETE",

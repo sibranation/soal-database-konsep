@@ -1,6 +1,6 @@
 # Kuis Konsep Basis Data
 
-20 soal pilihan ganda dari materi *Model Pembelajaran Berbasis Industri – Konsep Basis Data* (model data, model hierarkis/relasional/berorientasi objek, SQL).
+15 soal pilihan ganda dari materi *Model Pembelajaran Berbasis Industri – Konsep Basis Data* (model data, model hierarkis/relasional/berorientasi objek, SQL).
 
 ## Jalankan
 
@@ -8,7 +8,7 @@
 node server.js
 ```
 
-Buka http://localhost:3000 → isi Nama & NIM → **Mulai** → jawab 20 soal → **Selesai** → skor tampil.
+Buka http://localhost:3000 → isi Nama & NIM → **Mulai** → jawab 15 soal → **Selesai** → skor tampil.
 
 ## Data (JSON lokal)
 
