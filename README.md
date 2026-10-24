@@ -1,0 +1,18 @@
+# Kuis Konsep Basis Data
+
+20 soal pilihan ganda dari materi *Model Pembelajaran Berbasis Industri – Konsep Basis Data* (model data, model hierarkis/relasional/berorientasi objek, SQL).
+
+## Jalankan
+
+```bash
+node server.js
+```
+
+Buka http://localhost:3000 → isi Nama & NIM → **Mulai** → jawab 20 soal → **Selesai** → skor tampil.
+
+## Data (JSON lokal)
+
+- `data/soal.json` — soal + kunci jawaban (kunci tidak dikirim ke browser)
+- `data/hasil.json` — hasil tiap peserta (nama, NIM, benar, skor, waktu), dibuat otomatis
+
+Tes: `node test.js`

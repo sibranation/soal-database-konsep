@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuis Konsep Basis Data</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 16px; background: #f6f7fb; color: #222; }
+  .card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  label { display: block; margin: 8px 0; }
+  input[type=text] { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
+  button { padding: 12px 24px; font-size: 16px; border: 0; border-radius: 6px; background: #2b59c3; color: #fff; cursor: pointer; }
+  button:disabled { background: #aaa; cursor: not-allowed; }
+  .opsi label { padding: 8px; border-radius: 6px; cursor: pointer; }
+  .opsi label:hover { background: #eef2ff; }
+  .skor { font-size: 48px; font-weight: bold; color: #2b59c3; text-align: center; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<h1>Kuis Konsep Basis Data</h1>
+
+<form id="identitas" class="card">
+  <label for="nama">Nama</label>
+  <input type="text" id="nama" required autocomplete="name">
+  <label for="nim">NIM</label>
+  <input type="text" id="nim" required>
+  <p><button type="submit" id="mulai" disabled>Mulai</button></p>
+</form>
+
+<form id="kuis" hidden>
+  <div id="daftar"></div>
+  <button type="submit">Selesai</button>
+</form>
+
+<div id="hasil" class="card" hidden></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const nama = $('nama'), nim = $('nim'), mulai = $('mulai');
+let soal = [];
+
+const cek = () => { mulai.disabled = !(nama.value.trim() && nim.value.trim()); };
+nama.addEventListener('input', cek);
+nim.addEventListener('input', cek);
+
+$('identitas').addEventListener('submit', async e => {
+  e.preventDefault();
+  soal = await (await fetch('/api/soal')).json();
+  $('daftar').innerHTML = '';
+  soal.forEach((s, i) => {
+    const card = document.createElement('fieldset');
+    card.className = 'card opsi';
+    const legend = document.createElement('legend');
+    legend.textContent = `${i + 1}. ${s.pertanyaan}`;
+    card.appendChild(legend);
+    s.pilihan.forEach((p, j) => {
+      const label = document.createElement('label');
+      const input = document.createElement('input');
+      Object.assign(input, { type: 'radio', name: 'q' + s.id, value: j, required: true });
+      label.append(input, ` ${'ABCD'[j]}. ${p}`);
+      card.appendChild(label);
+    });
+    $('daftar').appendChild(card);
+  });
+  $('identitas').hidden = true;
+  $('kuis').hidden = false;
+});
+
+$('kuis').addEventListener('submit', async e => {
+  e.preventDefault();
+  const jawaban = {};
+  soal.forEach(s => {
+    const pilih = document.querySelector(`input[name="q${s.id}"]:checked`);
+    if (pilih) jawaban[s.id] = Number(pilih.value);
+  });
+  const res = await fetch('/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nama: nama.value, nim: nim.value, jawaban })
+  });
+  const h = await res.json();
+  if (!res.ok) return alert(h.error);
+  const out = $('hasil');
+  out.innerHTML = '<h2>Hasil</h2><p></p><div class="skor"></div><p></p>';
+  out.querySelectorAll('p')[0].textContent = `${h.nama} (${h.nim})`;
+  out.querySelector('.skor').textContent = h.skor;
+  out.querySelectorAll('p')[1].textContent = `Benar ${h.benar} dari ${h.total} soal`;
+  $('kuis').hidden = true;
+  out.hidden = false;
+  window.scrollTo(0, 0);
+});
+</script>
+</body>
+</html>

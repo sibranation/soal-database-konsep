@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "pertanyaan": "Apa yang dimaksud dengan model data?",
+    "pilihan": [
+      "Perangkat keras untuk menyimpan data dalam server",
+      "Kerangka kerja abstrak untuk mengorganisasi, menata, dan menstandarisasi elemen data serta hubungan antar data",
+      "Bahasa pemrograman untuk membuat aplikasi web",
+      "Kumpulan file yang disimpan dalam satu folder"
+    ],
+    "jawaban": 1
+  },
+  {
+    "id": 2,
+    "pertanyaan": "Berikut ini yang merupakan tujuan dari model data adalah...",
+    "pilihan": [
+      "Mempercepat koneksi internet",
+      "Mengganti peran DBMS",
+      "Memastikan konsistensi, meningkatkan integritas data, dan memfasilitasi pemahaman data yang kompleks",
+      "Mengurangi jumlah pengguna basis data"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 3,
+    "pertanyaan": "Tiga tingkatan model data berdasarkan tingkat abstraksi adalah...",
+    "pilihan": [
+      "Relasional, Hierarkis, Jaringan",
+      "Konseptual, Logis, Fisik",
+      "DDL, DML, DCL",
+      "Objek, Kelas, Pewarisan"
+    ],
+    "jawaban": 1
+  },
+  {
+    "id": 4,
+    "pertanyaan": "Model data yang memberikan gambaran besar tentang data, mendefinisikan entitas, atribut, dan aturan bisnis tanpa detail teknis adalah...",
+    "pilihan": [
+      "Model Data Fisik",
+      "Model Data Logis",
+      "Model Data Konseptual",
+      "Model Data Jaringan"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 5,
+    "pertanyaan": "Model data yang paling detail dan teknis, memetakan model logis ke DBMS tertentu termasuk tipe data, pengindeksan, dan metode akses adalah...",
+    "pilihan": [
+      "Model Data Fisik",
+      "Model Data Konseptual",
+      "Model Data Logis",
+      "Model Data Hierarkis"
+    ],
+    "jawaban": 0
+  },
+  {
+    "id": 6,
+    "pertanyaan": "Model Data Logis berfungsi untuk...",
+    "pilihan": [
+      "Menentukan merek server yang digunakan",
+      "Memetakan konsep data ke struktur teknis yang lebih rinci, termasuk jenis data atribut, hubungan antar entitas, dan atribut kunci",
+      "Menggambar antarmuka aplikasi",
+      "Mengatur hak akses pengguna"
+    ],
+    "jawaban": 1
+  },
+  {
+    "id": 7,
+    "pertanyaan": "Manakah yang BUKAN merupakan fungsi utama model data?",
+    "pilihan": [
+      "Mendefinisikan struktur data",
+      "Menstandardisasi data",
+      "Meningkatkan kualitas data",
+      "Meningkatkan kecepatan prosesor komputer"
+    ],
+    "jawaban": 3
+  },
+  {
+    "id": 8,
+    "pertanyaan": "Model data yang mengorganisir data dalam pola induk-anak menyerupai pohon dengan satu akar tunggal disebut...",
+    "pilihan": [
+      "Model Data Relasional",
+      "Model Data Berorientasi Objek",
+      "Model Data Hierarkis",
+      "Model Data Dokumen"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 9,
+    "pertanyaan": "Pada struktur direktori berkas sebagai contoh model hierarkis, yang berperan sebagai akar adalah...",
+    "pilihan": [
+      "Laporan.docx",
+      "Drive C:",
+      "Folder Dokumen",
+      "Foto.jpg"
+    ],
+    "jawaban": 1
+  },
+  {
+    "id": 10,
+    "pertanyaan": "Dalam model hierarkis, setiap node memiliki satu induk, kecuali...",
+    "pilihan": [
+      "Simpul daun",
+      "Simpul cucu",
+      "Simpul akar",
+      "Simpul anak"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 11,
+    "pertanyaan": "Model data relasional mengorganisasi data ke dalam...",
+    "pilihan": [
+      "Tabel-tabel yang terdiri dari baris dan kolom",
+      "Objek yang memiliki atribut dan metode",
+      "Struktur pohon induk-anak",
+      "Pasangan kunci dan nilai saja"
+    ],
+    "jawaban": 0
+  },
+  {
+    "id": 12,
+    "pertanyaan": "Dalam model relasional, setiap baris dalam tabel yang mewakili satu catatan data individual disebut...",
+    "pilihan": [
+      "Atribut",
+      "Relasi",
+      "Tupel",
+      "Domain"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 13,
+    "pertanyaan": "Kolom unik yang secara khusus mengidentifikasi setiap baris dalam sebuah tabel disebut...",
+    "pilihan": [
+      "Kunci Asing (Foreign Key)",
+      "Kunci Primer (Primary Key)",
+      "Atribut Turunan",
+      "Indeks Sekunder"
+    ],
+    "jawaban": 1
+  },
+  {
+    "id": 14,
+    "pertanyaan": "Kolom dalam satu tabel yang merujuk pada kunci primer di tabel lain untuk membuat hubungan antar tabel disebut...",
+    "pilihan": [
+      "Kunci Primer",
+      "Kunci Kandidat",
+      "Kunci Asing",
+      "Kunci Komposit"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 15,
+    "pertanyaan": "Aturan dalam model relasional yang memastikan data akurat, konsisten, dan tidak terhapus secara tidak sengaja saat dihubungkan adalah...",
+    "pilihan": [
+      "Integritas entitas dan integritas referensial",
+      "Enkapsulasi dan polimorfisme",
+      "GRANT dan REVOKE",
+      "Normalisasi dan denormalisasi"
+    ],
+    "jawaban": 0
+  },
+  {
+    "id": 16,
+    "pertanyaan": "Konsep pada model berorientasi objek yang menggabungkan data dan metode ke dalam satu unit serta menyembunyikan detail implementasi internalnya disebut...",
+    "pilihan": [
+      "Pewarisan",
+      "Polimorfisme",
+      "Enkapsulasi",
+      "Abstraksi tabel"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 17,
+    "pertanyaan": "Pada sistem perpustakaan berorientasi objek, kelas Novel yang mewarisi atribut dari kelas Buku merupakan contoh dari...",
+    "pilihan": [
+      "Enkapsulasi",
+      "Pewarisan",
+      "Polimorfisme",
+      "Integritas referensial"
+    ],
+    "jawaban": 1
+  },
+  {
+    "id": 18,
+    "pertanyaan": "Perintah SQL CREATE, ALTER, dan DROP termasuk dalam kategori...",
+    "pilihan": [
+      "Data Manipulation Language (DML)",
+      "Data Control Language (DCL)",
+      "Data Definition Language (DDL)",
+      "Transaction Control Language (TCL)"
+    ],
+    "jawaban": 2
+  },
+  {
+    "id": 19,
+    "pertanyaan": "Perintah SQL yang digunakan untuk mengubah data yang sudah ada dalam tabel adalah...",
+    "pilihan": [
+      "ALTER",
+      "UPDATE",
+      "INSERT",
+      "GRANT"
+    ],
+    "jawaban": 1
+  },
+  {
+    "id": 20,
+    "pertanyaan": "Perintah SQL untuk mencabut hak akses pengguna yang telah diberikan sebelumnya adalah...",
+    "pilihan": [
+      "DELETE",
+      "DROP",
+      "REVOKE",
+      "GRANT"
+    ],
+    "jawaban": 2
+  }
+]
