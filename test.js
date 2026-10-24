@@ -1,6 +1,6 @@
 const assert = require('assert');
 const soal = require('./data/soal.json');
-const { nilai } = require('./server');
+const { nilai } = require('./api/_lib');
 
 assert.strictEqual(soal.length, 20);
 const semuaBenar = Object.fromEntries(soal.map(s => [s.id, s.jawaban]));
